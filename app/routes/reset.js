@@ -37,7 +37,7 @@ router.post('/',async function HandleReset(req,res,next){
   }
   const expireToken = Date.now() + 3600000 // 1 heure
   await db.addResetToken(email,token,expireToken)
-  const link = `${process.env.SERVER_IP}:${process.env.PORT}/reset/${token}`
+  const link = `/reset/${token}`
 
 
   const transport = nodemailer.createTransport({
