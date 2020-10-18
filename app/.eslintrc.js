@@ -23,6 +23,7 @@ module.exports = {
     },
   },
   rules: {
+    "no-console": "off",
     'no-var': ['error'],
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },

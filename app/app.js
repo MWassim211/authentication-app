@@ -54,12 +54,14 @@ const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const signupRouter = require('./routes/signup');
 const restrictedRouter = require('./routes/restricted');
+const resetRouter = require('./routes/reset');
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/users', usersRouter);
 app.use('/signup', signupRouter);
 app.use('/restricted', restrictedRouter);
+app.use('/reset',resetRouter);
 
 // not found handler
 app.use(function notFoundHandler(req, res, next) {
