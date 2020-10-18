@@ -26,33 +26,32 @@ router.post('/', async function signupHandler(req, res, next) {
     if (login.length === 0){
       notifier.notify('Veuillez renseigné un Username Valide')
       res.redirect('/signup');
-      next();
+      return;
     }
     if (password !== passwordConfirm){
       notifier.notify('Les mots de passe rensegnés ne sont pas identiques');
       res.redirect('/signup');
-      next();
+      return;
     }
     const usernameExist = await checkUsernameExist(login)
     if(usernameExist === true) {
         notifier.notify("Un compte assicié à ce username exist déja ! Veuillez renouveller votre inscription en choissisant un nouveau login :) ")
         res.redirect('/signup');
-        next();
+        return;
     }
 
     const emailexist = await checkEmailExist(req.body.email)
-    console.log(emailexist)
     if(emailexist === true) {
         notifier.notify("Un compte assicié à cet email exist déja !, Veuillez renouveler votre inscription avec un nouveau Mail")
         res.redirect('/signup');
-        next();
+        return;
     }
     passwordValidation(req.body.password)
-    .catch(response=>{console.log(response)})
     .catch(e => {
         notifier.notify(" Password faible ! Utiliser 8 caractères minimum dont une lettre miniscule, une lettre majuscule, un caractère spécial, et un chiffre")
         console.log(e);
         res.redirect('/signup');
+        
     });
     // const captchavalid = await captchaVerification(captcha)
     // if(!captchavalid){
