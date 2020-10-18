@@ -22,7 +22,7 @@ router.post('/', async function signupHandler(req, res, next) {
     const login = req.body.username.toLowerCase();
     const {password} = req.body;
     const passwordConfirm = req.body.confirmPassword;
-    const captcha = req.body['g-recaptcha-response'];
+    // const captcha = req.body['g-recaptcha-response'];
     if (login.length === 0){
       notifier.notify('Veuillez renseigné un Username Valide')
       res.redirect('/signup');
@@ -53,11 +53,11 @@ router.post('/', async function signupHandler(req, res, next) {
         res.redirect('/signup');
         
     });
-    const captchavalid = await captchaVerification(captcha)
-    if(!captchavalid){
-        res.redirect('/signup')
-    } 
-    sendMail({mail : email}) 
+    // const captchavalid = await captchaVerification(captcha)
+    // if(!captchavalid){
+    //     res.redirect('/signup')
+    // } 
+    //sendMail({mail : email}) 
     const code = await generateRandomCode();
 
     const link = `/signup/confirm?code=${code}`;
