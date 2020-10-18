@@ -3,7 +3,7 @@ const { JWT, JWK : { asKey } } = require('jose');
 const debug = require('debug')('app:authenticate');
 const createError = require('http-errors');
 const crypto = require('crypto');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const notifier = require('node-notifier');
 const db = require('../models/queries');
 

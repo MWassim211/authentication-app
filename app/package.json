@@ -7,7 +7,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development DEBUG=app:* nodemon -e js,ejs,json server.js",
-    "lint" : "eslint ."
+    "lint": "eslint ."
   },
   "os": [
     "linux",
@@ -37,7 +37,7 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.5",
     "debug": "^4.2.0",
     "dotenv": "^8.2.0",

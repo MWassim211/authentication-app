@@ -4,7 +4,7 @@ const createError = require('http-errors');
 const crypto = require('crypto');
 const notifier = require('node-notifier');
 const nodemailer = require('nodemailer'); 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const db = require('../models/queries');
 const {passwordValidation2 } = require('../services/signUpFormValidation');
 

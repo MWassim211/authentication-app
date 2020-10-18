@@ -1,6 +1,6 @@
 const express = require('express');
 const createError = require('http-errors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const notifier = require('node-notifier');
 const db = require('../models/queries');
 const { sendMail } = require('../services/mailservice');
