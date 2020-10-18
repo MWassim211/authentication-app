@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lc0vtgZAAAAAME3MRyUqWZKBoWQ6ySGVtoTMbBT"></script>
   <%- include('includes/header') -%>
   <body>
     <div id="main">
@@ -31,10 +31,18 @@
                 <label for="pw2">Confirm password:</label
                 ><input class="form-control" id="pw2" type="password" name="confirmPassword" />
               </div>
-              <div class="g-recaptcha" data-sitekey="6LcWb9YZAAAAAAc2Ho6VgcvicJ1v5FZZ7CB1xrMF"></div>
+	       <input type="text" id="g-recaptcha-response" name="g-recaptcha-response" /><br>	                                     
+              <!--<div class="g-recaptcha" data-sitekey="6Lc0vtgZAAAAAME3MRyUqWZKBoWQ6ySGVtoTMbBT"></div>-->
               <!-- <div class="g-recaptcha" data-sitekey="6LdRsNgZAAAAAB5xE2vRiBVN2d2MvkryEk8t5Hig"></div> -->
               <button class="btn btn-primary" type="submit">Sign up</button>
             </form>
+		<script>
+              grecaptcha.ready(function() {
+                grecaptcha.execute('6Lc0vtgZAAAAAME3MRyUqWZKBoWQ6ySGVtoTMbBT', {action: 'submit'}).then(function(token) {
+                  document.getElementById("g-recaptcha-response").value = token;
+                });
+              });
+            </script>
           </div>
         </div>
       </div>

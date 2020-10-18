@@ -24,30 +24,33 @@ router.post('/', async function signupHandler(req, res, next) {
     console.log( process.env.DB_HOST);
     console.log( process.env.DB_PASS);
     console.log( process.env.DB_DATABASE);
+    console.log( process.env.CAPTCHA_SECRET);
     const email = req.body.email.toLowerCase();
     const login = req.body.username.toLowerCase();
     const {password} = req.body;
     const passwordConfirm = req.body.confirmPassword;
     const captcha = req.body['g-recaptcha-response'];
-
+console.log(captcha);
+console.log("yes");
     if (login.length === 0){
       notifier.notify('Veuillez renseigné un Username Valide')
       res.redirect('/signup');
       return;
     }
-
+console.log("yes");
     if (password !== passwordConfirm){
       notifier.notify('Les mots de passe rensegnés ne sont pas identiques');
       res.redirect('/signup');
       return;
     }
-
+console.log("yes");
     const usernameExist = await checkUsernameExist(login)
     if(usernameExist === true) {
         notifier.notify("Un compte assicié à ce username exist déja ! Veuillez renouveller votre inscription en choissisant un nouveau login :) ")
         res.redirect('/signup');
         return;
     }
+console.log("yes");
 
     const emailexist = await checkEmailExist(req.body.email)
     if(emailexist === true) {
@@ -55,7 +58,7 @@ router.post('/', async function signupHandler(req, res, next) {
         res.redirect('/signup');
         return;
     }
-
+console.log("yes");
     passwordValidation(req.body.password)
     .catch(e => {
         notifier.notify(" Password faible ! Utiliser 8 caractères minimum dont une lettre miniscule, une lettre majuscule, un caractère spécial, et un chiffre")
@@ -63,21 +66,22 @@ router.post('/', async function signupHandler(req, res, next) {
         res.redirect('/signup');
         
     });
- 
+ 	console.log("yes");
     const captchavalid = await captchaVerification(captcha)
     if(!captchavalid){
+	console.log("captcha fault")
         res.redirect('/signup')
     } 
-
+	console.log("makesh");
     // sendMail({mail : email}) 
     const code = await generateRandomCode();
 
     const link = `${process.env.SERVER_IP}:${process.env.PORT}/signup/confirm?code=${code}`;
     const html = `<p>Appuyez <a href="${link}"> ici </a> pour confirmer votre adresse mail.</p>`
-    sendMail({mail : "cesifow751@abbuzz.com" , html})
-    .catch(()=>{
-      console.log("Erreur lors de lenoie ");
-    })
+    //sendMail({mail : "cesifow751@abbuzz.com" , html})
+    //.catch(()=>{
+    //  console.log("Erreur lors de lenoie ");
+    //})
     const saltRounds = 10
     bcrypt.hash(password, saltRounds,async function(err,hash){
     if (hash){
