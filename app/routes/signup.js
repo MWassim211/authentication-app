@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const notifier = require('node-notifier');
 const db = require('../models/queries');
 const { sendMail } = require('../services/mailservice');
-const { captchaVerification } = require ('../services/captchVerificationService');
+// const { captchaVerification } = require ('../services/captchVerificationService');
 const { generateRandomCode } = require('../services/generateRandomCode');
 const {checkEmailExist , checkUsernameExist , passwordValidation } = require('../services/signUpFormValidation');
 
@@ -53,10 +53,10 @@ router.post('/', async function signupHandler(req, res, next) {
         res.redirect('/signup');
         
     });
-    // const captchavalid = await captchaVerification(captcha)
-    // if(!captchavalid){
-    //     res.redirect('/signup')
-    // } 
+     /*const captchavalid = await captchaVerification(captcha)
+     if(!captchavalid){
+         res.redirect('/signup')
+     } */
     //sendMail({mail : email}) 
     const code = await generateRandomCode();
 

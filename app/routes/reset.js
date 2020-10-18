@@ -43,11 +43,9 @@ router.post('/',async function HandleReset(req,res,next){
   const transport = nodemailer.createTransport({
     // host : 'smtp.gmail.com',
     // port : 587,
-    service: 'gmail',
-    auth: {
-       user: 'fm_beldjillali@esi.dz', // generated ethereal user
-       pass: '31090668bac', // generated ethereal password
-    }
+    host: 'smtp.univ-lyon1.fr',
+    port: 25,
+    secure: false, // true for 465, false for other ports
   
     })
 
