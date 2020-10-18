@@ -18,6 +18,12 @@ router.get('/', function signupHandler(_req, res, _next) {
 
 router.post('/', async function signupHandler(req, res, next) {
   try {
+
+    console.log( process.env.DB_USER);
+    console.log( process.env.DB_PORT);
+    console.log( process.env.DB_HOST);
+    console.log( process.env.DB_PASS);
+    console.log( process.env.DB_DATABASE);
     const email = req.body.email.toLowerCase();
     const login = req.body.username.toLowerCase();
     const {password} = req.body;
